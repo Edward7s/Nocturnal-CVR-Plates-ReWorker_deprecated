@@ -41,11 +41,11 @@ namespace Nocturnal
                     {
                         DefaultColor = new int[] { 255, 0, 90 },
                         FriendsColor = new int[] { 255, 250, 0 },
-                        Background = Convert.ToBase64String(wc.DownloadData("https://nocturnal-client.xyz/Resources/namepalte.png")),
-                        Icon = Convert.ToBase64String(wc.DownloadData("https://nocturnal-client.xyz/Resources/iconbackground.png")),
-                        MicIconOn = Convert.ToBase64String(wc.DownloadData("https://nocturnal-client.xyz/Resources/cvr/Mic%20On.png")),
-                        MicIconOff = Convert.ToBase64String(wc.DownloadData("https://nocturnal-client.xyz/Resources/cvr/micoff.png")),
-                        Friend = Convert.ToBase64String(wc.DownloadData("https://nocturnal-client.xyz/Resources/cvr/friendIcon.png")),
+                        Background = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/namepalte%20(1).png")),
+                        Icon = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/iconbackground.png")),
+                        MicIconOn = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/Mic%20On.png")),
+                        MicIconOff = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/micoff.png")),
+                        Friend = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/friendIcon.png")),
                     }));
                     wc.Dispose();
                 }

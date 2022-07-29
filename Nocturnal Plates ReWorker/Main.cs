@@ -27,7 +27,6 @@ namespace Nocturnal
         private IEnumerator WaitForUi()
         {
             while (RootLogic.Instance == null) yield return new WaitForSeconds(1f);
-
             RootLogic.Instance.comms.OnPlayerStartedSpeaking += PlayerTalking;
             RootLogic.Instance.comms.OnPlayerStoppedSpeaking += PlayerStopTalking;
             yield break;
@@ -45,13 +44,12 @@ namespace Nocturnal
         }
         private void PlayerTalking(Dissonance.VoicePlayerState obj)
         {
-           
-            if (obj.Amplitude > 0.1f) return;
             _handler = GameObject.Find($"/{obj.Name}").transform.Find("[NamePlate]").gameObject.GetComponent<NamePlateHandler>();
-            _handler.BackgroundMask.color = new Color(_handler.UserColor.r, _handler.UserColor.g, _handler.UserColor.b, 1f);
-            _handler.BackgroundImageComp.color = new Color(_handler.UserColor.r, _handler.UserColor.g, _handler.UserColor.b, 1f);
             _handler.MicOn.SetActive(true);
             _handler.MicOff.SetActive(false);
+            if (obj.Amplitude > 0.1f) return;
+            _handler.BackgroundMask.color = new Color(_handler.UserColor.r, _handler.UserColor.g, _handler.UserColor.b, 1f);
+            _handler.BackgroundImageComp.color = new Color(_handler.UserColor.r, _handler.UserColor.g, _handler.UserColor.b, 1f);
         }
 
         private static void HPatch() =>
