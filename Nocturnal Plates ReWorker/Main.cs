@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MelonLoader;
-using Harmony;
+using HarmonyLib;
 using ABI_RC.Core.Player;
 using System.Reflection;
 using ABI_RC.Core;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using BepInEx;
 namespace Nocturnal
 {
-    public class Main : MelonMod
+    [BepInPlugin("org.bepinex.plugins.Nocturnal.Plates", "Nocturnal CVR Plates Reworker", "1.1.0.0")]
+    public class Main : BaseUnityPlugin
     {
-        private static HarmonyInstance Instance  = new HarmonyInstance(Guid.NewGuid().ToString());
+        private static Harmony Instance  = new Harmony(Guid.NewGuid().ToString());
         internal static Config s_config { get; set; }
-        public override void OnApplicationStart()
+        private void Awake()
         {
             s_config = new Config();
             HPatch();
-            MelonCoroutines.Start(WaitForUi());
+            StartCoroutine(WaitForUi());
         }
 
         private IEnumerator WaitForUi()
@@ -55,7 +56,7 @@ namespace Nocturnal
         }
 
         private static void HPatch() =>
-            Instance.Patch(typeof(PlayerNameplate).GetMethod(nameof(PlayerNameplate.UpdateNamePlate)),null, typeof(Main).GetMethod(nameof(PostFix), System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).ToNewHarmonyMethod());
+            Instance.Patch(typeof(PlayerNameplate).GetMethod(nameof(PlayerNameplate.UpdateNamePlate)),null,new HarmonyMethod(typeof(Main).GetMethod(nameof(PostFix), System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)));
         
 
 

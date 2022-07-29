@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nocturnal</RootNamespace>
-    <AssemblyName>Nocturnal CVR Better Plates</AssemblyName>
+    <AssemblyName>Nocturnal CVR Reworked Plates</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\MelonLoader\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Accessibility" />
     <Reference Include="Assembly-CSharp">
@@ -71,6 +72,18 @@
     <Reference Include="AwesomeTechnologies.VegetationStudioPro.Runtime">
       <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\AwesomeTechnologies.VegetationStudioPro.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="BepInEx.Core">
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\BepInEx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Preloader.Core">
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\BepInEx.Preloader.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Preloader.Unity">
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\BepInEx.Preloader.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Unity">
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\BepInEx.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="Bhaptics.Tact">
       <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Bhaptics.Tact.dll</HintPath>
     </Reference>
@@ -107,12 +120,36 @@
     <Reference Include="DissonanceVoip">
       <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\DissonanceVoip.dll</HintPath>
     </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\MelonLoader\MelonLoader.dll</HintPath>
+    <Reference Include="Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour, Version=22.1.29.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils, Version=22.1.29.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\MonoMod.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SemanticVersioning">
+      <HintPath>..\..\..\steam\steamapps\common\ChilloutVR\BepInEx\core\SemanticVersioning.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
