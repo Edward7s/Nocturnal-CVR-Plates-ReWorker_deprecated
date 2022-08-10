@@ -7,7 +7,7 @@ using UnityEngine;
 using ABI_RC.Core.Networking.IO.Social;
 namespace Nocturnal
 {
-    internal class NamePlateHandler : MonoBehaviour
+    internal class NamePlateHandler : MonoBehaviour, IDisposable
     {
         private GameObject _maskGameObject { get; set; }
         private UnityEngine.UI.Image _maskImageComp { get; set; }
@@ -33,26 +33,31 @@ namespace Nocturnal
             }
             catch { return; }
 
-            switch (this.transform.parent.gameObject.GetComponent<ABI_RC.Core.Player.PlayerDescriptor>().userRank)
-            {
-                case "Legend":
-                    UserColor = Config.Legend;
-                    break;
-                case "Community Guide":
-                    UserColor = Config.Guide;
-                    break;
-                case "Moderator":
-                    UserColor = Config.Mod;
-                    break;
-                case "Developer":
-                    UserColor = Config.Dev;
-                    break;
-                default:
-                    UserColor = Config.DefaultColor;
-                    break;
-            }
-            if (ABI_RC.Core.InteractionSystem.ViewManager.Instance.FriendList.FirstOrDefault(x => x.UserId == gameObject.name) != null)
+           
+
+            if (ABI_RC.Core.InteractionSystem.ViewManager.Instance.FriendList.FirstOrDefault(x => x.UserId == this.transform.parent.gameObject.name) != null)
                 UserColor = Config.FriendsColor;
+            else
+            {
+                switch (this.transform.parent.gameObject.GetComponent<ABI_RC.Core.Player.PlayerDescriptor>().userRank)
+                {
+                    case "Legend":
+                        UserColor = Config.Legend;
+                        break;
+                    case "Community Guide":
+                        UserColor = Config.Guide;
+                        break;
+                    case "Moderator":
+                        UserColor = Config.Mod;
+                        break;
+                    case "Developer":
+                        UserColor = Config.Dev;
+                        break;
+                    default:
+                        UserColor = Config.DefaultColor;
+                        break;
+                }
+            }
 
             _backgroundGameObject = this.transform.Find("Canvas/Content/Image").gameObject;
             Component.DestroyImmediate(_backgroundGameObject.GetComponent<UnityEngine.UI.Image>());
@@ -96,9 +101,15 @@ namespace Nocturnal
             MicOn = GameObject.Instantiate(MicOff, _freindIcon.transform.parent.transform);
             MicOn.GetComponent<UnityEngine.UI.Image>().ChangeSpriteFromString(Main.s_config.Js.MicIconOn).color = UserColor;
             MicOn.transform.localPosition = new Vector3(0.944f, 0.39f, 0);
+            MicOn.gameObject.SetActive(false);
 
             if (UserColor == Config.DefaultColor) _friend.enabled = false;
+            CancelInvoke(nameof(Setup));
+            Dispose();
+        }
 
+        public void Dispose()
+        {
             _friend = null;
             _micOnImage = null;
             _micOffImage = null;
@@ -107,7 +118,6 @@ namespace Nocturnal
             _backgroundGameObject = null;
             _backgroundGameObj = null;
             _freindIcon = null;
-            CancelInvoke(nameof(Setup));
         }
     }
 }
