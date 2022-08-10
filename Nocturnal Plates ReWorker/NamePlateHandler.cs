@@ -1,10 +1,10 @@
-﻿using ABI_RC.Core.Networking.IO.Social;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using ABI_RC.Core.Networking.IO.Social;
 namespace Nocturnal
 {
     internal class NamePlateHandler : MonoBehaviour
@@ -33,7 +33,27 @@ namespace Nocturnal
             }
             catch { return; }
 
-            UserColor = Friends.List.Where(x => x.UserId == this.transform.parent.gameObject.name).FirstOrDefault() != null ? Main.s_config.FriendsColor : Main.s_config.DefaultColor;
+            switch (this.transform.parent.gameObject.GetComponent<ABI_RC.Core.Player.PlayerDescriptor>().userRank)
+            {
+                case "Legend":
+                    UserColor = Config.Legend;
+                    break;
+                case "Community Guide":
+                    UserColor = Config.Guide;
+                    break;
+                case "Moderator":
+                    UserColor = Config.Mod;
+                    break;
+                case "Developer":
+                    UserColor = Config.Dev;
+                    break;
+                default:
+                    UserColor = Config.DefaultColor;
+                    break;
+            }
+            if (ABI_RC.Core.InteractionSystem.ViewManager.Instance.FriendList.FirstOrDefault(x => x.UserId == gameObject.name) != null)
+                UserColor = Config.FriendsColor;
+
             _backgroundGameObject = this.transform.Find("Canvas/Content/Image").gameObject;
             Component.DestroyImmediate(_backgroundGameObject.GetComponent<UnityEngine.UI.Image>());
 
@@ -77,7 +97,7 @@ namespace Nocturnal
             MicOn.GetComponent<UnityEngine.UI.Image>().ChangeSpriteFromString(Main.s_config.Js.MicIconOn).color = UserColor;
             MicOn.transform.localPosition = new Vector3(0.944f, 0.39f, 0);
 
-            if (UserColor == Main.s_config.DefaultColor) _friend.enabled = false;
+            if (UserColor == Config.DefaultColor) _friend.enabled = false;
 
             _friend = null;
             _micOnImage = null;
