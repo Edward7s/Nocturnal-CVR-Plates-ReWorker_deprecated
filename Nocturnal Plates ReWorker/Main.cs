@@ -17,10 +17,11 @@ namespace Nocturnal
     public class Main : BaseUnityPlugin
     {
         private static Harmony Instance  = new Harmony(Guid.NewGuid().ToString());
-        internal static Config s_config { get; set; }
+        public static Transform LocalPlayerTransform { get; set; }
+
         private void Awake()
         {
-            s_config = new Config();
+            new Config();
             HPatch();
             StartCoroutine(WaitForUi());
         }
@@ -31,6 +32,8 @@ namespace Nocturnal
 
             RootLogic.Instance.comms.OnPlayerStartedSpeaking += PlayerTalking;
             RootLogic.Instance.comms.OnPlayerStoppedSpeaking += PlayerStopTalking;
+            LocalPlayerTransform = RootLogic.Instance.localPlayerRoot.transform;
+
             yield break;
         }
 
