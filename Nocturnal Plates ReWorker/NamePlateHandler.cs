@@ -116,7 +116,6 @@ namespace Nocturnal
         {
             _distance = 0.1f + Vector3.Distance(this.transform.parent.transform.position, Main.LocalPlayerTransform.position) / 9;
             _distance2 = _distance > 0.9f ? 0.9f : _distance;
-            MelonLoader.MelonLogger.Msg(_distance2);
             _canvas.localScale = new Vector3(_distance2, _distance2, 1);
         }
 
