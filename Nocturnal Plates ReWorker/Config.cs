@@ -25,11 +25,14 @@ namespace Nocturnal
         public string MicIconOn { get; set; }
         public string MicIconOff { get; set; }
         public string Friend { get; set; }
+        public bool DistanceScale { get; set; }
+
     }
 
 
     internal class Config
     {
+        public static Config Instance;
         public Json Js { get; set; }
         public static Color DefaultColor { get; set; }
         public static Color FriendsColor { get; set; }
@@ -41,14 +44,15 @@ namespace Nocturnal
 
         public Config()
         {
+            Instance = this;
             if (!Directory.Exists(Directory.GetCurrentDirectory() + "//Nocturnal"))
                 Directory.CreateDirectory(Directory.GetCurrentDirectory() + "//Nocturnal");
 
-            if (!File.Exists(Directory.GetCurrentDirectory() + "//Nocturnal//PlatesManagerConfig1.1.Json"))
+            if (!File.Exists(Directory.GetCurrentDirectory() + "//Nocturnal//PlatesManagerConfig1.2.Json"))
             {
                 using (WebClient wc = new WebClient())
                 {
-                    File.WriteAllText(Directory.GetCurrentDirectory() + "//Nocturnal//PlatesManagerConfig1.1.Json", JsonConvert.SerializeObject(new Json()
+                    File.WriteAllText(Directory.GetCurrentDirectory() + "//Nocturnal//PlatesManagerConfig1.2.Json", JsonConvert.SerializeObject(new Json()
                     {
                         DefaultColor = new int[] { 255, 8, 90 },
                         FriendsColor = new int[] { 255, 251, 0 },
@@ -61,11 +65,12 @@ namespace Nocturnal
                         MicIconOn = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/Mic%20On.png")),
                         MicIconOff = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/micoff.png")),
                         Friend = Convert.ToBase64String(wc.DownloadData("https://raw.githubusercontent.com/Edward7s/Nocturnal-CVR-Plates-ReWorker/master/Icons/friendIcon.png")),
+                        DistanceScale = true,
                     }));
                     wc.Dispose();
                 }
             }
-            Js = JsonConvert.DeserializeObject<Json>(File.ReadAllText(Directory.GetCurrentDirectory() + "//Nocturnal//PlatesManagerConfig1.1.Json"));
+            Js = JsonConvert.DeserializeObject<Json>(File.ReadAllText(Directory.GetCurrentDirectory() + "//Nocturnal//PlatesManagerConfig1.2.Json"));
             DefaultColor  = new Color32(byte.Parse(Js.DefaultColor[0].ToString()), byte.Parse(Js.DefaultColor[1].ToString()), byte.Parse(Js.DefaultColor[2].ToString()), 170);
             FriendsColor = new Color32(byte.Parse(Js.FriendsColor[0].ToString()), byte.Parse(Js.FriendsColor[1].ToString()), byte.Parse(Js.FriendsColor[2].ToString()), 170);
             PropertyInfo[] ConfigProps = typeof(Config).GetProperties(BindingFlags.Public | BindingFlags.Static);

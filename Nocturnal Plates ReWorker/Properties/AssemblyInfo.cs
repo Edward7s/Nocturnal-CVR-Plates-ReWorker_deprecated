@@ -15,7 +15,7 @@ using MelonLoader;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: MelonInfo(typeof(Nocturnal.Main), "Nocturnal ReWorked Plates", "1.1", "Edward7")]
+[assembly: MelonInfo(typeof(Nocturnal.Main), "Nocturnal ReWorked Plates", "1.2", "Edward7")]
 [assembly: MelonColor(System.ConsoleColor.DarkMagenta)]
 [assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
 // Setting ComVisible to false makes the types in this assembly not visible

@@ -17,6 +17,8 @@ namespace Nocturnal
     {
         private static HarmonyInstance Instance  = new HarmonyInstance(Guid.NewGuid().ToString());
         internal static Config s_config { get; set; }
+
+        public static Transform LocalPlayerTransform { get; set; }
         public override void OnApplicationStart()
         {
             s_config = new Config();
@@ -29,6 +31,9 @@ namespace Nocturnal
             while (RootLogic.Instance == null) yield return new WaitForSeconds(1f);
             RootLogic.Instance.comms.OnPlayerStartedSpeaking += PlayerTalking;
             RootLogic.Instance.comms.OnPlayerStoppedSpeaking += PlayerStopTalking;
+
+
+            LocalPlayerTransform = RootLogic.Instance.localPlayerRoot.transform;
             yield break;
         }
 
@@ -55,8 +60,6 @@ namespace Nocturnal
         private static void HPatch() =>
             Instance.Patch(typeof(PlayerNameplate).GetMethod(nameof(PlayerNameplate.UpdateNamePlate)),null, typeof(Main).GetMethod(nameof(PostFix), System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).ToNewHarmonyMethod());
         
-
-
         private static void PostFix(PlayerNameplate __instance) =>       
             __instance.gameObject.AddComponent<NamePlateHandler>();
         
