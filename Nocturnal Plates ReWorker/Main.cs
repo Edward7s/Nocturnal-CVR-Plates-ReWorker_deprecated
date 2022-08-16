@@ -16,12 +16,10 @@ namespace Nocturnal
     public class Main : MelonMod
     {
         private static HarmonyInstance Instance  = new HarmonyInstance(Guid.NewGuid().ToString());
-        internal static Config s_config { get; set; }
-
         public static Transform LocalPlayerTransform { get; set; }
         public override void OnApplicationStart()
         {
-            s_config = new Config();
+            new Config();
             HPatch();
             MelonCoroutines.Start(WaitForUi());
         }
